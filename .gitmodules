@@ -1,0 +1,6 @@
+[submodule "common"]
+	path = common
+	url = https://github.com/figwam/common.git
+[submodule "modules/common"]
+	path = modules/common
+	url = https://github.com/figwam/common.git

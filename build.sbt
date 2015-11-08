@@ -35,7 +35,11 @@ libraryDependencies ++= Seq(
   filters
 )
 
-lazy val common = ProjectRef(file("../common"),"common")
+// This setup works if common is on top of the project
+lazy val common = project.in(file("modules/common"))
+
+// This setup should be used if common is on top of the project
+//lazy val common = ProjectRef(file("../common"),"common")
 lazy val root = (project in file(".")).enablePlugins(PlayScala, JavaAppPackaging).aggregate(common).dependsOn(common)
 
 includeFilter in (Assets, LessKeys.less) := "*.less"
@@ -78,10 +82,10 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
 //    https://github.com/heroku/sbt-heroku#configuring-the-plugin
 //********************************************************
 herokuAppName in Compile := Map(
-  "test" -> "tranquil-earth-1899",
+  "test" -> "young-lake-6576",
   "stage"  -> "your-heroku-app-stage",
   "prod" -> "your-heroku-app-prod"
-  ).getOrElse(sys.props("appEnv"), "tranquil-earth-1899")
+  ).getOrElse(sys.props("appEnv"), "young-lake-6576")
 
 herokuJdkVersion in Compile := "1.8"
 herokuConfigVars in Compile := Map(
