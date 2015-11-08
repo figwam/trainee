@@ -82,10 +82,10 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
 //    https://github.com/heroku/sbt-heroku#configuring-the-plugin
 //********************************************************
 herokuAppName in Compile := Map(
-  "test" -> "young-lake-6576",
+  "test" -> "afternoon-lowlands-7045",
   "stage"  -> "your-heroku-app-stage",
   "prod" -> "your-heroku-app-prod"
-  ).getOrElse(sys.props("appEnv"), "young-lake-6576")
+  ).getOrElse(sys.props("appEnv"), "--")
 
 herokuJdkVersion in Compile := "1.8"
 herokuConfigVars in Compile := Map(
