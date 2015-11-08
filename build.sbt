@@ -36,10 +36,10 @@ libraryDependencies ++= Seq(
 )
 
 // This setup works if common is on top of the project
-lazy val common = project.in(file("modules/common"))
+// lazy val common = project.in(file("modules/common"))
 
 // This setup should be used if common is on top of the project
-//lazy val common = ProjectRef(file("../common"),"common")
+lazy val common = ProjectRef(file("../common"),"common")
 lazy val root = (project in file(".")).enablePlugins(PlayScala, JavaAppPackaging).aggregate(common).dependsOn(common)
 
 includeFilter in (Assets, LessKeys.less) := "*.less"
@@ -82,7 +82,7 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
 //    https://github.com/heroku/sbt-heroku#configuring-the-plugin
 //********************************************************
 herokuAppName in Compile := Map(
-  "test" -> "afternoon-lowlands-7045",
+  "test" -> "frozen-hollows-1609",
   "stage"  -> "your-heroku-app-stage",
   "prod" -> "your-heroku-app-prod"
   ).getOrElse(sys.props("appEnv"), "--")
@@ -91,6 +91,9 @@ herokuJdkVersion in Compile := "1.8"
 herokuConfigVars in Compile := Map(
   "NPM_CONFIG_PRODUCTION" -> "false",
   "PLAY_PROD_CONF_FILE" -> "application.prod.conf",
+  "PLAY_APP_SECRET" -> "a5ydVN4P49f3P@orf[VV55>3zXrIFokc_XqvRUa9_t4[Mznxmh4[RGH9<cVrsLNL",
+  "DATABASE_URL" -> "postgres://nbifzvjofkcalk:Sz059KLHsXWFSCpKtrtjMVHAN4@ec2-107-21-105-116.compute-1.amazonaws.com:5432/d67ggp4fi6movg",
+  "SBT_CLEAN" -> "true",
   "JAVA_OPTS" -> "-XX:+UseCompressedOops"
 )
 

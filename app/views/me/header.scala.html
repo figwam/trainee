@@ -6,7 +6,7 @@
         <div class="user pull-right">
             <div class="item dropdown">
                 <a class="dropdown-toggle">
-                    <img ng-if="!trainee.avatarurl" src="images/avatar.jpg"/>
+                    <img ng-if="!trainee.avatarurl" src="@routes.Assets.at("images/avatar.jpg")"/>
                     <img ng-if="trainee.avatarurl" ng-src="{{trainee.avatarurl}}"/>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
