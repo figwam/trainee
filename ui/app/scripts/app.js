@@ -8,11 +8,11 @@ var app = angular.module('uiApp', [
   'ngMessages',
   'ngCookies',
   'ui.router',
+  'ngAnimate',
   'ui.bootstrap',
   'satellizer',
   'validation.match',
   'angularUtils.directives.dirPagination',
-  'ngAnimate',
   'ngLoadingSpinner'
 ]);
 
@@ -77,7 +77,7 @@ app.config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authPro
           controller: 'HomeCtrl'
         },
         'content': {
-          templateUrl: '/views/home.html',
+          templateUrl: '/views/test.html',
           controller: 'HomeCtrl'
         },
         'footer': {

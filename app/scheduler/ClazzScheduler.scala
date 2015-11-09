@@ -47,9 +47,10 @@ class ClazzScheduler @Inject() (clazzDAO: ClazzDAO, clazzDefinitionDAO: ClazzDef
   def receive = {
     case CREATE_CLAZZES =>
       try {
+        Logger.info("Execute Cron "+CREATE_CLAZZES)
         lazy val seeInAdvanceDays = 50 //Play.application().configuration().getString("days.see.clazzes.in.advance").toInt
         val clazzes =  clazzDefinitionDAO.listActive()
-        Logger.debug("Execute Cron "+CREATE_CLAZZES+":"+Json.toJson(clazzes))
+        Logger.info("Execute Cron "+CREATE_CLAZZES+":"+Json.toJson(clazzes))
         clazzes.map { clazzDef =>
           clazzDef.map { clazzDef =>
             Logger.debug(clazzDef.id+"-"+clazzDef.recurrence)
@@ -101,7 +102,7 @@ class ClazzScheduler @Inject() (clazzDAO: ClazzDAO, clazzDefinitionDAO: ClazzDef
           }
 
         }
-        Logger.debug("Finished Cron "+CREATE_CLAZZES+":"+Json.toJson(clazzes))
+        Logger.info("Finished Cron "+CREATE_CLAZZES+":"+Json.toJson(clazzes))
         clazzes.onSuccess { case a => Logger("Classes created")/*case a => Logger.debug(s"Classes created: $a")*/ }
         clazzes.onFailure { case t: Throwable => Logger.error(t.getMessage,t) }
       } catch {

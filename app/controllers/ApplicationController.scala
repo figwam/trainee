@@ -39,11 +39,6 @@ class ApplicationController @Inject()(
                                        subscriptionDAO: SubscriptionDAO)
   extends Silhouette[Trainee, JWTAuthenticator] {
 
-
-  def test = UserAwareAction.async { implicit request =>
-    Future.successful(Ok(Json.toJson("test")))
-  }
-
   def offers = UserAwareAction.async { implicit request =>
     lazy val cacheExpire = Play.application().configuration().getString("cache.expire.get.offers").toInt
     val offers:List[Offer] = Cache.getAs[List[Offer]]("offers").getOrElse{
@@ -170,6 +165,8 @@ class ApplicationController @Inject()(
 
   def view(template: String) = UserAwareAction { implicit request =>
     template match {
+      case "test" => Ok(views.html.me.subscription())
+      case "modal" => Ok(views.html.modal())
       case "home" => Ok(views.html.home())
       case "signUp" => Ok(views.html.signUp())
       case "signUpAbo" => Ok(views.html.signUpAbo())

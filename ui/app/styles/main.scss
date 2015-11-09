@@ -24,6 +24,12 @@ $sidebarMenuItemHover: $brand-warning;
 @import "rdash-ui/widgets";
 
 
+
+
+
+
+
+/* CSS used here will be applied after bootstrap.css */
 /** OVERRIDE the value $icon-font-path directly in theme.css !!! **/
 ///$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../../bower_components/bootstrap/fonts/") !default;
 $icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../../bower_components/bootstrap/fonts/") !default;
@@ -60,6 +66,40 @@ $navbar-default-link-disabled-bg:          transparent;
 }
 @media(min-width:$screen-lg-min){
 
+}
+
+.modal-header-default {
+  color:$text-color2;
+  background-color: $brand-primary;
+  border-bottom:1px solid $input-border;
+  padding:9px 15px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-header-success {
+  @extend .modal-header-default;
+  background-color: $brand-success;
+}
+.modal-header-warning {
+  @extend .modal-header-default;
+  background-color: $brand-warning;
+}
+.modal-header-danger {
+  @extend .modal-header-default;
+  background-color: $brand-danger;
+}
+.modal-header-info {
+  @extend .modal-header-default;
+  background-color: $brand-info;
+}
+.modal-header-primary {
+  @extend .modal-header-default;
+  background-color: $brand-primary;
 }
 
 .header-logo img {

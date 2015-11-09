@@ -28,7 +28,7 @@
                                 <td>{{trainee.subscription.period.end | date: 'dd.MM.yyyy'}}</td>
                                 <td ng-show="trainee.subscription.canceledOn">@Messages("my.subscription.cancelled")</td>
                                 <td>
-                                    <a ng-show="!trainee.subscription.canceledOn" href="#" class="btn btn-danger">@Messages("my.subscription.cancel")</a>
+                                    <a ng-show="!trainee.subscription.canceledOn" ng-click="delete()" class="btn btn-danger">@Messages("my.subscription.cancel")</a>
                                     <a ng-show="trainee.subscription.canceledOn" href="#" class="btn btn-success">@Messages("word.activate")</a>
                                     <a ng-show="!trainee.subscription.canceledOn" class="btn btn-info" ng-click="open()">
                                         <span class="btn-fa fa fa-plus"></span>@Messages("my.subscription.timestop.add")
@@ -73,18 +73,23 @@
         </rd-widget>
     </div>
 
-
         <!-- line modal -->
-    <div modal="showModal" close="cancel()">
-        <div class="modal-header">
-            <h4>Modal Dialog</h4>
-        </div>
-        <div class="modal-body">
-            <p>Example paragraph with some text.</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-success" ng-click="ok()">Okay</button>
-            <button class="btn" ng-click="cancel()">Cancel</button>
-        </div>
+    <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+    <h3>I'm a modal!</h3>
     </div>
+    <div class="modal-body">
+    <ul>
+    <li ng-repeat="item in items">
+        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+    </li>
+    </ul>
+    </div>
+    <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+    </script>
 </div>
+
+

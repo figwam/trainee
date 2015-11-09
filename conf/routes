@@ -6,7 +6,6 @@ GET           /                                      com.tuplejump.playYeoman.Ye
 
 #open resources
 GET           /trainee                               controllers.ApplicationController.trainee
-GET           /test                               controllers.ApplicationController.test
 GET           /offers                               controllers.ApplicationController.offers
 GET           /clazzes                               controllers.ApplicationController.clazzes(p:Int ?= 0, s:Int ?= 1, f ?= "")
 GET           /clazzesCount                          controllers.ApplicationController.clazzesCount
