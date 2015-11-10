@@ -32,7 +32,7 @@
             <input type="text" checker="scope.checkValidity" name="street" ng-model="formData.street" placeholder="@Messages("street")" class="form-control input-sm" required>
         </div>
         <div class="col-sm-2">
-            <input type="text" checker="scope.checkValidity" name="zip" ng-model="formData.zip" placeholder="@Messages("zip")" class="form-control input-sm" ng-pattern="/^\w{4,4}$/" required>
+            <input type="text" checker="scope.checkValidity" name="zip" ng-model="formData.zip" placeholder="@Messages("zip")" class="form-control input-sm" ng-pattern="/^\d{4,4}$/" required>
         </div>
         <div class="col-sm-4">
             <input type="text" checker="scope.checkValidity" name="city" ng-model="formData.city" placeholder="@Messages("city")" class="form-control input-sm" required>

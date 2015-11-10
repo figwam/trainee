@@ -15,6 +15,8 @@ GET           /clazzes/trainees/me                   controllers.ApplicationCont
 GET          /trainees/me/registrationsCount         controllers.RegistrationController.countByTrainee
 POST          /trainees/me/registrations             controllers.RegistrationController.create
 DELETE        /trainees/me/registrations/:id         controllers.RegistrationController.delete(id: String)
+PUT             /trainees/me                         controllers.TraineeController.update
+
 #1420066800000 = 01.01.2015 00:00:00 LocalTime, see http://currentmillis.com/
 #7258114800000 = 01.01.2200 00:00:00 So pretty in future. What will happen in year 2200 with this app I actually dont care!
 GET          /trainees/me/clazzes                    controllers.ApplicationController.clazzesPersonalizedMy(p:Int ?= 0, s:Int ?= 1, f ?= "", sf:Long ?= 1420066800000L, ea:Long ?= 7258114800000L)

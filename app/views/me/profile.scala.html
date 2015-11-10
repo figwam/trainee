@@ -5,10 +5,6 @@
 
     <fieldset class="signUp-fieldset">
 
-        <div class="help-block text-danger" ng-if="form.email.$dirty" ng-messages="form.email.$error">
-            <div ng-message="required">@Messages("error.required")</div>
-            <div ng-message="trainee.exists">@Messages("trainee.exists")</div>
-        </div>
         <div class="help-block text-danger" ng-if="form.zip.$dirty" ng-messages="form.zip.$error">
             <div ng-message="required">@Messages("error.required")</div>
             <div ng-message="invalid.data">@Messages("invalid.data")</div>
@@ -43,26 +39,19 @@
             </div>
             <div class="col-sm-2">
                 <label class="control-label">@Messages("zip"):</label>
-                <input type="text" ng-value="trainee.address.zip" checker="scope.checkValidity" name="zip" ng-model="formData.zip" placeholder="@Messages("zip")" class="form-control input-sm" ng-pattern="/^\w{4,4}$/" required>
+                <input type="text" ng-value="trainee.address.zip" checker="scope.checkValidity" name="zip" ng-model="formData.zip" placeholder="@Messages("zip")" class="form-control input-sm" ng-pattern="/^\d{4,4}$/" required>
             </div>
             <div class="col-sm-4">
                 <label class="control-label">@Messages("city"):</label>
                 <input type="text" ng-value="trainee.address.city" checker="scope.checkValidity" name="city" ng-model="formData.city" placeholder="@Messages("city")" class="form-control input-sm" required>
             </div>
         </div>
-        <div class="form-group row signUp-formGroup">
-            <div class="col-sm-12">
-                <label class="control-label">@Messages("email"):</label>
-                <input type="email" ng-value="trainee.email" checker="scope.checkValidity" name="email" ng-model="formData.email" placeholder="@Messages("email")" class="form-control input-sm" required>
-            </div>
-        </div>
-
 
         <div class="form-group row">
             <div class="col-lg-12">
                 <div class="form-group">
                         <!--ng-disabled="form.$invalid" -->
-                    <button id="submit" type="submit" value="submit" class="btn btn-lg btn-success btn-block">@Messages("word.save")</button>
+                    <button id="submit" type="submit" value="submit" class="btn btn-lg btn-success btn-block" ng-click="update()">@Messages("word.save")</button>
                 </div>
             </div>
         </div>

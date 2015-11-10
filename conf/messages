@@ -139,5 +139,8 @@ my.subscription.timestop=Abostopp
 my.subscription.cancel=Kündigen
 my.subscription.cancelled=Gekündigt
 
+save.ok=Daten erfolgreich gespeichert
+save.fail=Speichern der Daten fehlgeschlagen
+
 
 

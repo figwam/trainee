@@ -77,7 +77,7 @@ app.config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authPro
           controller: 'HomeCtrl'
         },
         'content': {
-          templateUrl: '/views/test.html',
+          templateUrl: '/views/home.html',
           controller: 'HomeCtrl'
         },
         'footer': {
@@ -175,7 +175,8 @@ app.config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authPro
     .state('me.profile', {
       views: {
         'content@': {
-          templateUrl: '/views/me/profile.html'
+          templateUrl: '/views/me/profile.html',
+          controller: 'TraineeCtrl'
         }
       }})
 
@@ -298,5 +299,4 @@ app.config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authPro
     popupOptions: { width: 495, height: 500 }
   });
 });
-
 
