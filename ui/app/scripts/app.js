@@ -157,7 +157,8 @@ app.config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authPro
     .state('me.subscription', {
       views: {
         'content@': {
-          templateUrl: '/views/me/subscription.html'
+          templateUrl: '/views/me/subscription.html',
+          controller: 'SubscriptionCtrl'
         }
       }})
     .state('me.myclazzes', {
@@ -169,7 +170,8 @@ app.config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authPro
     .state('me.bill', {
       views: {
         'content@': {
-          templateUrl: '/views/me/bill.html'
+          templateUrl: '/views/me/bill.html',
+          controller: 'BillCtrl'
         }
       }})
     .state('me.profile', {

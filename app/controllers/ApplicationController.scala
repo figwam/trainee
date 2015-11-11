@@ -13,7 +13,7 @@ import models.daos._
 import play.Play
 import play.api.Logger
 import play.api.cache.Cache
-import play.api.i18n.MessagesApi
+import play.api.i18n.{Messages, MessagesApi}
 import play.api.libs.json.Json
 import scala.concurrent.ExecutionContext.Implicits.global
 import play.api.Play.current
@@ -159,6 +159,7 @@ class ApplicationController @Inject()(
       case "sidebar" => Future.successful(Ok(views.html.me.sidebar()))
       case "profile" => Future.successful(Ok(views.html.me.profile()))
       case "bill" => Future.successful(Ok(views.html.me.bill()))
+      case "deleteSubscriptionModal" => Future.successful(Ok(views.html.templates.modal("danger", Messages("my.subscription.delete.modal.header"), Messages("my.subscription.delete.modal.body"), Messages("word.cancel"), Messages("word.confirm"))))
       case _ => Future.successful(NotFound)
     }
   }
@@ -166,7 +167,6 @@ class ApplicationController @Inject()(
   def view(template: String) = UserAwareAction { implicit request =>
     template match {
       case "test" => Ok(views.html.me.subscription())
-      case "modal" => Ok(views.html.modal())
       case "home" => Ok(views.html.home())
       case "signUp" => Ok(views.html.signUp())
       case "signUpAbo" => Ok(views.html.signUpAbo())

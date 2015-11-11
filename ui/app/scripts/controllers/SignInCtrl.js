@@ -5,7 +5,7 @@
 /**
  * The sign in controller.
  */
-app.controller('SignInCtrl', ['$scope', '$auth', '$location', function($scope, $auth, $location) {
+app.controller('SignInCtrl', ['$scope', '$auth', '$state', function($scope, $auth, $state) {
 
   /**
    * Submits the login form.
@@ -15,7 +15,7 @@ app.controller('SignInCtrl', ['$scope', '$auth', '$location', function($scope, $
     $auth.setStorageType($scope.rememberMe ? 'localStorage' : 'sessionStorage');
     $auth.login({ email: $scope.email, password: $scope.password, rememberMe: $scope.rememberMe })
       .then(function() {
-        $location.path("/me")
+        $state.go('me')
         /*
         An alert could be placed here with some message like "Some message to user"
         see: https://angular-ui.github.io/bootstrap/#/alert

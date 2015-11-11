@@ -62,6 +62,13 @@ word.price=Preis
 word.save=Speichern
 word.status=Status
 word.activate=Aktivieren
+word.welcome=Willkommen
+word.cancel=Abbrechen
+word.confirm=Bestätigen
+word.active=Aktiv
+word.amount=Betrag
+word.vat=MwSt
+
 
 
 view.index.title=Gymix
@@ -96,7 +103,6 @@ invalid.credentials=Login fehlgeschlagen: E-Mail und Passwort Kombination ist fa
 trainee.exists=Benutzer mit dieser E-Mail Adresse ist bereits registriert
 invalid.data=Bitte überprüfen sie die Eingabe Ihrer Daten
 
-word.welcome=Willkommen
 
 
 search.clazz=Sportkurs suchen
@@ -138,9 +144,22 @@ my.subscription.timestop.add=Abostopp
 my.subscription.timestop=Abostopp
 my.subscription.cancel=Kündigen
 my.subscription.cancelled=Gekündigt
+my.subscription.valid.till=Gültig bis
+
+my.subscription.cancel.success=Abennoment gekündigt
+my.subscription.cancel.fail=Abennoment kündigung fehlgeschlagen
+
+
+my.subscription.delete.modal.header=Abbonement unwiderruflich kündigen?
+my.subscription.delete.modal.body=Möchten Sie wirklich ihr Abbonement kündigen. All ihre Statisticen gehen dabei verloren. Sie können weiterhin ihr Abonnement bis zum Ablauf des bereits bezahlten Monats nutzen. Danach wird ihr Gymix Zugriff unwiderruflich gelöscht.
+
+my.bills.amount.inkl.vat=Preis inkl. MwSt
+my.bills.amount.paid.at=Bezahlt am
 
 save.ok=Daten erfolgreich gespeichert
 save.fail=Speichern der Daten fehlgeschlagen
+
+
 
 
 

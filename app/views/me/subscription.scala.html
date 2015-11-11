@@ -1,6 +1,6 @@
 @()(implicit messages: Messages)
 
-<div class="row" ng-controller="SubscriptionCtrl">
+<div class="row">
     <div class="col-lg-12">
         <rd-widget>
             <rd-widget-header icon="fa-star" title="@Messages("my.subscription")">
@@ -14,7 +14,8 @@
                                 <th>@Messages("word.price")</th>
                                 <th>@Messages("word.from")</th>
                                 <th>@Messages("word.till")</th>
-                                <th ng-show="trainee.subscription.canceledOn">@Messages("word.status")</th>
+                                <th>@Messages("word.status")</th>
+                                <th ng-show="trainee.subscription.deletedOn">@Messages("my.subscription.valid.till")</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -26,13 +27,12 @@
                                 <td>CHF {{trainee.subscription.offer.price}}</td>
                                 <td>{{trainee.subscription.period.start | date: 'dd.MM.yyyy'}}</td>
                                 <td>{{trainee.subscription.period.end | date: 'dd.MM.yyyy'}}</td>
+                                <td ng-show="!trainee.subscription.canceledOn">@Messages("word.active")</td>
                                 <td ng-show="trainee.subscription.canceledOn">@Messages("my.subscription.cancelled")</td>
+                                <td ng-show="trainee.subscription.deletedOn">{{trainee.subscription.deletedOn | date: 'dd.MM.yyyy'}}</td>
                                 <td>
                                     <a ng-show="!trainee.subscription.canceledOn" ng-click="delete()" class="btn btn-danger">@Messages("my.subscription.cancel")</a>
-                                    <a ng-show="trainee.subscription.canceledOn" href="#" class="btn btn-success">@Messages("word.activate")</a>
-                                    <a ng-show="!trainee.subscription.canceledOn" class="btn btn-info" ng-click="open()">
-                                        <span class="btn-fa fa fa-plus"></span>@Messages("my.subscription.timestop.add")
-                                    </a>
+                                    <!--<a ng-show="trainee.subscription.canceledOn" href="#" class="btn btn-success">@@Messages("word.activate")</a>-->
                                 </td>
                             </tr>
                         </tbody>
@@ -41,55 +41,6 @@
             </rd-widget-body>
         </rd-widget>
     </div>
-
-    <div class="col-lg-12">
-        <rd-widget>
-            <rd-widget-header icon="fa-star-half-o" title="@Messages("my.subscription.timestop")">
-            </rd-widget-header>
-            <rd-widget-body classes="large no-padding">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>@Messages("word.price")</th>
-                                <th>@Messages("word.from")</th>
-                                <th>@Messages("word.till")</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>CHF {{trainee.subscription.offer.price}}</td>
-                                <td>{{trainee.subscription.period.start | date: 'dd.MM.yyyy'}}</td>
-                                <td>{{trainee.subscription.period.end | date: 'dd.MM.yyyy'}}</td>
-                                <td>
-                                    <a href="#" class="btn btn-success">@Messages("word.revert")</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </rd-widget-body>
-        </rd-widget>
-    </div>
-
-        <!-- line modal -->
-    <script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-    <h3>I'm a modal!</h3>
-    </div>
-    <div class="modal-body">
-    <ul>
-    <li ng-repeat="item in items">
-        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-    </li>
-    </ul>
-    </div>
-    <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    </div>
-    </script>
 </div>
 
 

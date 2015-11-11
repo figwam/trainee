@@ -6,50 +6,29 @@
  * The clazz controller.
  *
  */
-app.controller('SubscriptionCtrl', ['$modal', '$scope', 'ModalService', function($modal, $scope,ModalService) {
+app.controller('SubscriptionCtrl', ['$modal','ModalService', '$scope', '$rootScope', 'AlertFactory', '$http', '$templateCache', function($modal, ModalService, $scope, $rootScope, AlertFactory, $http, $templateCache) {
 
-  $scope.animationsEnabled = true;
-  $scope.items = ['item1', 'item2', 'item3'];
-  $scope.selected = {
-    item: $scope.items[0]
-  };
-
-  /*
-  $scope.open = function (size) {
-
-    $scope.$modalInstance = $modal.open({
-      animation: true,
-      templateUrl: 'myModalContent.html',
-      size: size,
-      scope: $scope,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
-
-    console.log($scope.$modalInstance);
-
-
-    $scope.$modalInstance.result.then(function (selectedItem) {
-      console.log('closed :'+selectedItem);
-      $scope.selected = selectedItem;
-    }, function () {
-      console.log('canceled');
+  $scope.retrieve = function(idSubscription) {
+    $http({
+      method: "GET",
+      url: "/trainees/me/subscriptions/"+idSubscription,
+      cache: $templateCache}).
+    then(function(response) {
+      $scope.status = response.status;
+      $scope.data = response.data;
+      $rootScope.trainee.subscription.canceledOn = response.data.canceledOn
+      $rootScope.trainee.subscription.deletedOn = response.data.deletedOn
+    }, function(response) {
+      $scope.data = response.data || "Request failed";
+      $scope.status = response.status;
     });
   };
-
-  $scope.ok = function() {
-    $scope.$modalInstance.close($scope.selected.item);
-  };
-
-  $scope.cancel = function() {
-    $scope.$modalInstance.dismiss('cancel');
-  };
-  */
 
   $scope.delete = function() {
+    var modalDefaults = {
+      templateUrl: '/views/me/deleteSubscriptionModal.html'
+    };
+
     var modalOptions = {
       closeButtonText: 'Cancel',
       actionButtonText: 'Delete',
@@ -57,9 +36,22 @@ app.controller('SubscriptionCtrl', ['$modal', '$scope', 'ModalService', function
       bodyText: 'Are you sure you want to delete this subs?'
     };
 
-    ModalService.showModal({}, modalOptions).then(function (result) {
+    ModalService.showModal(modalDefaults, modalOptions).then(function (result) {
       if (result === 'ok') {
-        console.log("OKOKOK")
+        $http({
+          method: "DELETE",
+          url: "/trainees/me/subscriptions/"+$rootScope.trainee.subscription.id,
+          cache: $templateCache}).
+        then(function(response) {
+          $scope.status = response.status
+          $scope.data = response.data
+          $scope.retrieve($rootScope.trainee.subscription.id)
+          AlertFactory.addAlert(response.data.message, "success")
+        }, function(response) {
+          $scope.data = response.data
+          $scope.status = response.status
+          AlertFactory.addAlert(response.data.message, "danger")
+        });
       }
     });
 

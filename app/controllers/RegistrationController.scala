@@ -44,18 +44,34 @@ class RegistrationController @Inject()(
 
   def create() = SecuredAction.async(parse.json) { implicit request =>
     (request.body \ "idClazz").asOpt[String].map { idClazz =>
-      registrationDAO.save(Registration(None, request.identity.id.get, UUID.fromString(idClazz)))
-        .onFailure { case t => Logger.warn(t.getMessage) }
-      Future.successful(Ok)
+      registrationDAO.save(Registration(None, request.identity.id.get, UUID.fromString(idClazz))).flatMap { ret =>
+        Future.successful(Ok)
+      }.recover {
+        case ex: TimeoutException =>
+          Logger.error("Problem create registration for clazz "+idClazz, ex)
+          InternalServerError(ex.getMessage)
+        case t: Throwable =>
+          Logger.error("Problem create registration for clazz "+idClazz, t)
+          BadRequest
+        case _ => BadRequest
+      }
     }.getOrElse {
       Future.successful(BadRequest("Missing parameter [idClazz]"))
     }
   }
 
-  def delete(idRegistration: String) = SecuredAction.async { implicit request =>
-      registrationDAO.delete(UUID.fromString(idRegistration))
-        .onFailure { case t => Logger.warn(t.getMessage) }
-      Future.successful(Ok)
+  def delete(idRegistration: UUID) = SecuredAction.async { implicit request =>
+      registrationDAO.delete(idRegistration).flatMap { ret =>
+        Future.successful(Ok)
+      }.recover {
+        case ex: TimeoutException =>
+          Logger.error("Problem delete registration for clazz "+idRegistration, ex)
+          InternalServerError(ex.getMessage)
+        case t: Throwable =>
+          Logger.error("Problem delete registration for clazz "+idRegistration, t)
+          BadRequest
+        case _ => BadRequest
+      }
   }
 
 }

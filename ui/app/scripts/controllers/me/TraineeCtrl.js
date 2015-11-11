@@ -32,7 +32,6 @@ app.controller('TraineeCtrl', ['$http','$scope','$templateCache','$rootScope', '
       $scope.data = response.data
       $scope.status = response.status
       AlertFactory.addAlert(response.data.message, "danger")
-
     });
   };
 
