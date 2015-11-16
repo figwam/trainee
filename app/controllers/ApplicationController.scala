@@ -124,7 +124,6 @@ class ApplicationController @Inject()(
   def clazzesPersonalizedMy(page: Int, orderBy: Int, filter: String, startFrom: Long, endAt:Long) = SecuredAction.async { implicit request =>
     val d = new GregorianCalendar()
     d.setTimeInMillis(startFrom)
-    print("###############################"+d)
     clazzDAO.listPersonalizedMy(page, 10, orderBy, "%" + filter + "%", request.identity.id.getOrElse(UUID.randomUUID()), new Timestamp(startFrom), new Timestamp(endAt)).flatMap { pageClazzes =>
       Future.successful(Ok(Json.toJson(pageClazzes)))
     }.recover {

@@ -7,11 +7,11 @@
  *
  */
 app.controller('BillCtrl', ['$modal','ModalService', '$scope', '$rootScope', 'AlertFactory', '$http', '$templateCache', function($modal, ModalService, $scope, $rootScope, AlertFactory, $http, $templateCache) {
-  
-  $scope.retrieve = function(idSubscription) {
+
+  $scope.retrieve = function() {
     $http({
       method: "GET",
-      url: "/trainees/me/subscriptions/"+idSubscription+"/bills",
+      url: "/trainees/me/subscriptions/"+$rootScope.trainee.subscription.id+"/bills",
       cache: $templateCache}).
     then(function(response) {
       $scope.status = response.status;

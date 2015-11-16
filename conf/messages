@@ -151,7 +151,7 @@ my.subscription.cancel.fail=Abennoment kündigung fehlgeschlagen
 
 
 my.subscription.delete.modal.header=Abbonement unwiderruflich kündigen?
-my.subscription.delete.modal.body=Möchten Sie wirklich ihr Abbonement kündigen. All ihre Statisticen gehen dabei verloren. Sie können weiterhin ihr Abonnement bis zum Ablauf des bereits bezahlten Monats nutzen. Danach wird ihr Gymix Zugriff unwiderruflich gelöscht.
+my.subscription.delete.modal.body=Möchten Sie wirklich ihr Abbonement kündigen. All ihre Statistiken gehen dabei verloren. Sie können ihr Abonnement bis zum Ablauf des bereits bezahlten Monats nutzen. Danach wird ihr Gymix Zugriff unwiderruflich gelöscht.
 
 my.bills.amount.inkl.vat=Preis inkl. MwSt
 my.bills.amount.paid.at=Bezahlt am
