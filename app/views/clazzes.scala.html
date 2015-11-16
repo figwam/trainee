@@ -24,7 +24,8 @@
         <article class="search-result row" dir-paginate="(key, item) in clazzes.items | itemsPerPage: 10" total-items="totalClazzes" current-page="pagination.current">
             <hr>
             <div class="col-xs-12 col-sm-12 col-md-3">
-                <a href="#" title="{{item.name}}" class="thumbnail"><img src="{{item.avatarurl}}" alt="Lorem ipsum" /></a>
+                <img ng-if="item.avatarurl" src="{{item.avatarurl}}"/>
+                <img ng-if="!item.avatarurl" src="@routes.Assets.at("images/logo/Gymix_logo_farbig.png")"/>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-2">
                 <ul class="meta-search">

@@ -9,7 +9,6 @@
 app.controller('ClazzMeCtrl', ['$state', '$scope', '$http', '$templateCache', 'AlertFactory', function($state, $scope, $http, $templateCache, AlertFactory) {
 
   $scope.clazzes = {};
-  $scope.clazzesSearchString = '';
   $scope.totalClazzes = 0;
   $scope.clazzesPerPage = 10;
   getResultsPage(1)
@@ -40,7 +39,7 @@ app.controller('ClazzMeCtrl', ['$state', '$scope', '$http', '$templateCache', 'A
 
   function getResultsPage(pageNumber) {
     //play start paging from 0 --> (pageNumber-1)
-    $http.get('/clazzes/trainees/me?p='+(pageNumber-1)+'&s=1&f='+($scope.clazzesSearchString == null ? '':$scope.clazzesSearchString))
+    $http.get('/clazzes/trainees/me?p='+(pageNumber-1)+'&s=1&f='+($rootScope.clazzesSearchString == null ? '':$rootScope.clazzesSearchString))
       .then(function(result) {
         $scope.clazzes = result.data
         $scope.totalClazzes = result.data.total
@@ -116,7 +115,7 @@ app.controller('ClazzMeCtrl', ['$state', '$scope', '$http', '$templateCache', 'A
 
 
   $scope.submitSearch = function(idTrainee){
-    $scope.clazzesSearchString = $scope.searchString
+    $rootScope.clazzesSearchString = $scope.searchString
     if ($state.current.name != 'me.clazzes') $state.go('me.clazzes')
     getResultsPage(1);
   };
