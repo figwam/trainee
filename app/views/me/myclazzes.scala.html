@@ -13,10 +13,12 @@
 
         <article class="search-result row" dir-paginate="(key, item) in myClazzes.items | itemsPerPage: 10" total-items="myTotalClazzes" current-page="pagination.current">
             <hr>
-            <a href="#" title="{{item.name}}" class="thumbnail">
-                <img ng-if="item.avatarurl" src="{{item.avatarurl}}"/>
-                <img ng-if="!item.avatarurl" src="@routes.Assets.at("images/logo/Gymix_logo_farbig.png")"/>
-            </a>
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                <a href="#" title="{{item.name}}" class="thumbnail">
+                    <img ng-if="item.avatarurl" src="{{item.avatarurl}}"/>
+                    <img ng-if="!item.avatarurl" src="@routes.Assets.at("images/logo/Gymix_logo_farbig.png")"/>
+                </a>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-2">
                 <ul class="meta-search">
                     <li><i class="fa fa-calendar"></i> <span>{{item.startFrom  | date: 'EEE, dd MMM'}}</span></li>

@@ -31,7 +31,8 @@
     </div>
 </div>
 <!-- End Header Bar -->
-<div class="row" ng-controller="ClazzMeCtrl">
+<!-- ng-if="!$state.includes('me.clazzes')"  DONT Show the searchbar header for state me.clazzes, cause this state owns its own clazz search-->
+<div ng-if="!$state.includes('me.clazzes')" class="row" ng-controller="ClazzMeCtrl">
     <div class="col-lg-12">
         <div class="row">
             <div class="col-md-12">

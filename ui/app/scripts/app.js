@@ -151,7 +151,8 @@ app.config(function ($urlRouterProvider, $stateProvider, $httpProvider, $authPro
     .state('me.clazzes', {
       views: {
         'content@': {
-          templateUrl: '/views/me/clazzes.html'
+          templateUrl: '/views/me/clazzes.html',
+          controller: 'ClazzMeCtrl'
         }
       }})
     .state('me.subscription', {

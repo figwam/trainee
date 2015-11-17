@@ -6,12 +6,12 @@
  * The clazz controller.
  *
  */
-app.controller('ClazzMeCtrl', ['$state', '$scope', '$http', '$templateCache', 'AlertFactory', function($state, $scope, $http, $templateCache, AlertFactory) {
+app.controller('ClazzMeCtrl', ['$state', '$scope', '$rootScope', '$http', '$templateCache', 'AlertFactory', function($state, $scope, $rootScope, $http, $templateCache, AlertFactory) {
 
   $scope.clazzes = {};
   $scope.totalClazzes = 0;
   $scope.clazzesPerPage = 10;
-  getResultsPage(1)
+  if ($state.current.name == 'me.clazzes') getResultsPage(1)
   $scope.pagination = {
     current: 1
   };
@@ -19,7 +19,7 @@ app.controller('ClazzMeCtrl', ['$state', '$scope', '$http', '$templateCache', 'A
   $scope.myTotalClazzes = 0;
   $scope.myClazzesPerPage = 10;
   $scope.myClazzes = {};
-  getMyClazzesResultsPage(1)
+  if ($state.current.name == 'me.myclazzes') getMyClazzesResultsPage(1)
   $scope.myClazzesPagination = {
     myClazzesCurrent: 1
   };
@@ -27,7 +27,7 @@ app.controller('ClazzMeCtrl', ['$state', '$scope', '$http', '$templateCache', 'A
   $scope.myTotalClazzesHistory = 0;
   $scope.myClazzesHistoryPerPage = 10;
   $scope.myClazzesHistory = {};
-  getMyClazzesHistoryResultsPage(1)
+  if ($state.current.name == 'me.myclazzes') getMyClazzesHistoryResultsPage(1)
   $scope.myClazzesHistoryPagination = {
     myClazzesHistory: 1
   };
@@ -88,7 +88,7 @@ app.controller('ClazzMeCtrl', ['$state', '$scope', '$http', '$templateCache', 'A
         getResultsPage($scope.pagination.current)
         getMyClazzesResultsPage($scope.myClazzesPagination.myClazzesCurrent)
         getMyClazzesHistoryResultsPage($scope.myClazzesHistoryPagination.myClazzesHistory)
-        AlertFactory.addAlert("jdsgkfdakhjfgslk","success")
+        AlertFactory.addAlert("Danke für Ihre Registrierung.","success")
       }, function(response) {
         $scope.data = response.data || "Request failed";
         $scope.status = response.status;
@@ -106,7 +106,7 @@ app.controller('ClazzMeCtrl', ['$state', '$scope', '$http', '$templateCache', 'A
         getResultsPage($scope.pagination.current)
         getMyClazzesResultsPage($scope.myClazzesPagination.myClazzesCurrent)
         getMyClazzesHistoryResultsPage($scope.myClazzesHistoryPagination.myClazzesHistory)
-        AlertFactory.addAlert("jdsgkfdakhjfgslk","danger")
+        AlertFactory.addAlert("Sie wurden vom Kurs abgemeldet.","danger")
       }, function(response) {
         $scope.data = response.data || "Request failed";
         $scope.status = response.status;
@@ -116,8 +116,8 @@ app.controller('ClazzMeCtrl', ['$state', '$scope', '$http', '$templateCache', 'A
 
   $scope.submitSearch = function(idTrainee){
     $rootScope.clazzesSearchString = $scope.searchString
+    getResultsPage(1)
     if ($state.current.name != 'me.clazzes') $state.go('me.clazzes')
-    getResultsPage(1);
   };
 }]);
 
