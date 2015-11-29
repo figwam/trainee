@@ -33,12 +33,17 @@
                     <li><i class="fa fa-clock-o"></i> <span>
                         {{item.startFrom  | date: 'HH:mm'}}-{{item.endAt | date: 'HH:mm'}}</span></li>
                     <li ng-if="item.contingent - item.registrations > 0"><i class="fa fa-users"></i> <span>
-                        {{item.contingent - item.registrations}} von {{item.contingent}} frei</span></li>
+                        {{item.contingent - item.registrations}} @Messages("word.of")&nbsp;{{item.contingent}} @Messages("word.free")</span></li>
                     <li ng-if="item.contingent - item.registrations <= 0"><i class="fa fa-users"></i> <span><strong class="text-danger">@Messages("clazz.booked.out")</strong></span></li>
+                    <li><i class="fa fa-tags"></i> <span>{{item.tags}}</span></li>
+                    <li><i class="fa fa-map-marker"></i> <span>{{item.studio.address.city}}</span></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
                 <h3><a href="#" title="">{{item.name}}</a></h3>
+                <ul class="meta-search">
+                    <li><span>{{item.studio.name}}: {{item.studio.address.street}}, {{item.studio.address.zip}} {{item.studio.address.city}}</span></li>
+                </ul>
                 <p>{{item.description}}</p>
                 <a  ui-sref="home.signUp.abo" ng-disabled="item.contingent - item.registrations <= 0" class="btn btn-success">@Messages("clazz.book")</a>
                     <!--<button class="btn btn-danger">Cancel</button>-->
